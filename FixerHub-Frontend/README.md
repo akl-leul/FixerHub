@@ -49,6 +49,9 @@ EXPO_PUBLIC_SUPABASE_URL='your-superbase-url'
 EXPO_PUBLIC_SUPABASE_ANON_KEY="your-expo-anon-key"
 ```
 
+## Project Structure
+
+```
 FixerHub-Frontend/
 ├── app/                # Screens and routing
 ├── hooks/              # custom React hooks
@@ -60,6 +63,8 @@ FixerHub-Frontend/
 ├── .env                # Environment variables
 ├── app.json            # Expo configuration
 └── package.json        # NPM dependencies
+```
+
 
 ## Available Scripts
 
