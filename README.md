@@ -34,11 +34,14 @@ npm install
 
 3. Create a `.env` file in the root directory and add your environment variables:
 ```env
-PORT=5000
-DATABASE_URL=your_postgresql_connection_string
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=fixerhub
+DB_USER=postgres
+DB_PASSWORD=danaye7
 JWT_SECRET=your_jwt_secret
-EMAIL_USER=your_email
-EMAIL_PASS=your_email_password
+NODEMAILER_USER=daniel.ayele@anbesg.com
+NODEMAILER_PASS=lonjvqsuqrbdaled
 ```
 
 ## Project Structure
