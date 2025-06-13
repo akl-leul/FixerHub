@@ -30,14 +30,24 @@ This is the **frontend client** for the FixerHub platform — a service marketpl
 - Supabase account and project 
 - Express backend running locally or remotely
 
-## 🚀 Installation
+## Installation
 
-1. **Clone the repo**:
-
+1. Clone the repository:
 ```bash
-git clone <your-repo-url>
-cd FixerHub-Frontend
+git clone <your-repository-url>
+cd FixerHub-Backend
+```
 
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Create a `.env` file in the root directory and add your environment variables:
+```env
+EXPO_PUBLIC_SUPABASE_URL='your-superbase-url'
+EXPO_PUBLIC_SUPABASE_ANON_KEY="your-expo-anon-key"
+```
 
 FixerHub-Frontend/
 ├── app/                # Screens and routing
@@ -50,3 +60,12 @@ FixerHub-Frontend/
 ├── .env                # Environment variables
 ├── app.json            # Expo configuration
 └── package.json        # NPM dependencies
+
+## Available Scripts
+
+- `npx expo start` - Start the server
+
+## Dependencies
+
+- supabase/supabase-js: database
+ 
