@@ -40,7 +40,7 @@ export default function ClientProfile() {
             try {
               await signOut();
               router.replace('/auth');
-            } catch (error: any) {
+            } catch (error) {
               Alert.alert('Error', error.message);
             }
           }
@@ -54,7 +54,6 @@ export default function ClientProfile() {
       title: 'Account Settings',
       icon: <Settings size={20} color="#6B7280" />,
       onPress: () => {
-        // TODO: Navigate to account settings
         Alert.alert('Coming Soon', 'Account settings will be available soon');
       }
     },
@@ -62,7 +61,6 @@ export default function ClientProfile() {
       title: 'Notifications',
       icon: <Bell size={20} color="#6B7280" />,
       onPress: () => {
-        // TODO: Navigate to notification settings
         Alert.alert('Coming Soon', 'Notification settings will be available soon');
       }
     },
@@ -70,7 +68,6 @@ export default function ClientProfile() {
       title: 'Privacy & Security',
       icon: <Shield size={20} color="#6B7280" />,
       onPress: () => {
-        // TODO: Navigate to privacy settings
         Alert.alert('Coming Soon', 'Privacy settings will be available soon');
       }
     },
@@ -78,7 +75,6 @@ export default function ClientProfile() {
       title: 'Payment Methods',
       icon: <CreditCard size={20} color="#6B7280" />,
       onPress: () => {
-        // TODO: Navigate to payment settings
         Alert.alert('Coming Soon', 'Payment methods will be available soon');
       }
     },
@@ -86,7 +82,6 @@ export default function ClientProfile() {
       title: 'Help & Support',
       icon: <HelpCircle size={20} color="#6B7280" />,
       onPress: () => {
-        // TODO: Navigate to help section
         Alert.alert('Coming Soon', 'Help & support will be available soon');
       }
     },

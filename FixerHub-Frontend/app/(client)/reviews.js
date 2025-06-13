@@ -13,19 +13,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 import { Star, Plus, X } from 'lucide-react-native';
-
-interface Review {
-  review_id: string;
-  professional_id: string;
-  professional_name: string;
-  rating: number;
-  review_text: string | null;
-  timestamp: string;
-}
+ 
 
 export default function ClientReviews() {
   const { user } = useAuth();
-  const [reviews, setReviews] = useState<Review[]>([]);
+  const [reviews, setReviews] = useState([]);
+
   const [loading, setLoading] = useState(false);
   const [showAddReview, setShowAddReview] = useState(false);
   const [newReview, setNewReview] = useState({
@@ -95,9 +88,9 @@ export default function ClientReviews() {
       setNewReview({ professionalId: '', rating: 0, reviewText: '' });
       loadReviews();
       Alert.alert('Success', 'Review submitted successfully');
-    } catch (error: any) {
-      Alert.alert('Error', error.message);
-    }
+    } catch (error) {
+  Alert.alert('Error', error.message);
+}
   };
 
   const renderStars = (rating: number, size = 16, interactive = false, onPress?: (rating: number) => void) => {

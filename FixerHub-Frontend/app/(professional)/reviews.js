@@ -28,7 +28,8 @@ interface ReviewStats {
 
 export default function ProfessionalReviews() {
   const { userProfile } = useAuth();
-  const [reviews, setReviews] = useState<Review[]>([]);
+  const [reviews, setReviews] = useState([]);
+
   const [stats, setStats] = useState<ReviewStats>({
     totalReviews: 0,
     averageRating: 0,

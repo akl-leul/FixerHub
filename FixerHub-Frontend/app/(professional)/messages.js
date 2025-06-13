@@ -32,10 +32,11 @@ interface Conversation {
 
 export default function ProfessionalMessages() {
   const { user } = useAuth();
-  const [conversations, setConversations] = useState<Conversation[]>([]);
-  const [selectedConversation, setSelectedConversation] = useState<string | null>(null);
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [newMessage, setNewMessage] = useState('');
+ const [conversations, setConversations] = useState([]);
+const [selectedConversation, setSelectedConversation] = useState(null);
+const [messages, setMessages] = useState([]);
+const [newMessage, setNewMessage] = useState('');
+ 
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -67,7 +68,8 @@ export default function ProfessionalMessages() {
       if (error) throw error;
 
       // Group messages by conversation partner
-      const conversationMap = new Map<string, Conversation>();
+    const conversationMap = new Map();
+
 
       data?.forEach((message: any) => {
         const partnerId = message.sender_id === user.id ? message.receiver_id : message.sender_id;
@@ -84,7 +86,7 @@ export default function ProfessionalMessages() {
             unread_count: message.receiver_id === user.id && !message.is_read ? 1 : 0,
           });
         } else {
-          const conversation = conversationMap.get(partnerId)!;
+          const conversation = conversationMap.get(partnerId);
           if (message.receiver_id === user.id && !message.is_read) {
             conversation.unread_count++;
           }

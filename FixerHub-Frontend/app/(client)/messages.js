@@ -11,30 +11,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 import { Search, MessageSquare, Send } from 'lucide-react-native';
-
-interface Message {
-  message_id: string;
-  sender_id: string;
-  receiver_id: string;
-  message_text: string;
-  timestamp: string;
-  is_read: boolean;
-  sender_name: string;
-}
-
-interface Conversation {
-  user_id: string;
-  username: string;
-  last_message: string;
-  last_message_time: string;
-  unread_count: number;
-}
+ 
 
 export default function ClientMessages() {
   const { user } = useAuth();
-  const [conversations, setConversations] = useState<Conversation[]>([]);
-  const [selectedConversation, setSelectedConversation] = useState<string | null>(null);
-  const [messages, setMessages] = useState<Message[]>([]);
+ const [conversations, setConversations] = useState([]);
+const [selectedConversation, setSelectedConversation] = useState(null);
+const [messages, setMessages] = useState([]);
+
   const [newMessage, setNewMessage] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
@@ -67,7 +51,8 @@ export default function ClientMessages() {
       if (error) throw error;
 
       // Group messages by conversation partner
-      const conversationMap = new Map<string, Conversation>();
+      const conversationMap = new Map();
+
 
       data?.forEach((message: any) => {
         const partnerId = message.sender_id === user.id ? message.receiver_id : message.sender_id;
@@ -84,7 +69,7 @@ export default function ClientMessages() {
             unread_count: message.receiver_id === user.id && !message.is_read ? 1 : 0,
           });
         } else {
-          const conversation = conversationMap.get(partnerId)!;
+          const conversation = conversationMap.get(partnerId);
           if (message.receiver_id === user.id && !message.is_read) {
             conversation.unread_count++;
           }

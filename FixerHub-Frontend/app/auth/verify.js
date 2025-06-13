@@ -18,7 +18,8 @@ export default function VerifyEmail() {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [loading, setLoading] = useState(false);
   const [resendLoading, setResendLoading] = useState(false);
-  const inputRefs = useRef<TextInput[]>([]);
+  const inputRefs = useRef([]);
+
   const { user, verifyEmail, resendVerification } = useAuth();
   const router = useRouter();
 
@@ -55,7 +56,7 @@ export default function VerifyEmail() {
     try {
       await verifyEmail(user.email, otpCode);
       router.push('/auth/role-selection');
-    } catch (error: any) {
+    } catch (error) {
       Alert.alert('Verification Failed', error.message);
     } finally {
       setLoading(false);
@@ -72,7 +73,7 @@ export default function VerifyEmail() {
     try {
       await resendVerification(user.email);
       Alert.alert('Success', 'Verification code sent to your email');
-    } catch (error: any) {
+    } catch (error) {
       Alert.alert('Error', error.message);
     } finally {
       setResendLoading(false);

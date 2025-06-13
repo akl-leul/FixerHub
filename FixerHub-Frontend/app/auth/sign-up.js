@@ -56,7 +56,7 @@ export default function SignUp() {
         role: 'client', // Default role, will be changed in role selection
       });
       router.push('/auth/verify');
-    } catch (error: any) {
+    } catch (error) {
       Alert.alert('Sign Up Failed', error.message);
     } finally {
       setLoading(false);

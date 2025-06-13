@@ -39,7 +39,7 @@ export default function RoleSelection() {
       } else {
         router.replace('/(professional)');
       }
-    } catch (error: any) {
+    } catch (error) {
       Alert.alert('Error', error.message);
     } finally {
       setLoading(false);

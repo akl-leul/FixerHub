@@ -42,7 +42,7 @@ export default function ProfessionalProfile() {
             try {
               await signOut();
               router.replace('/auth');
-            } catch (error: any) {
+            } catch (error) {
               Alert.alert('Error', error.message);
             }
           }

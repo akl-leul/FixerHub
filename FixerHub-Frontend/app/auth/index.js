@@ -33,7 +33,7 @@ export default function SignIn() {
     try {
       await signIn(email, password);
       // Navigation will be handled by the index.tsx useEffect
-    } catch (error: any) {
+    } catch (error) {
       Alert.alert('Sign In Failed', error.message);
     } finally {
       setLoading(false);

@@ -14,28 +14,13 @@ import { supabase } from '@/lib/supabase';
 import { Search, MapPin, Filter, Star, DollarSign } from 'lucide-react-native';
 import * as Location from 'expo-location';
 
-interface Category {
-  category_id: string;
-  category_name: string;
-}
-
-interface Professional {
-  user_id: string;
-  username: string;
-  category_name: string;
-  category_price: number;
-  location: string | null;
-  average_rating: number;
-  total_reviews: number;
-}
-
 export default function ClientSearch() {
   const { userProfile } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [professionals, setProfessionals] = useState<Professional[]>([]);
+  const [categories, setCategories] = useState([]);
+  const [professionals, setProfessionals] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [location, setLocation] = useState<Location.LocationObject | null>(null);
+  const [location, setLocation] = useState(null);
   const [locationPermission, setLocationPermission] = useState(false);
 
   useEffect(() => {
@@ -76,7 +61,7 @@ export default function ClientSearch() {
     }
   };
 
-  const searchProfessionals = async (categoryId?: string) => {
+  const searchProfessionals = async (categoryId) => {
     setLoading(true);
     try {
       let query = supabase
@@ -101,8 +86,7 @@ export default function ClientSearch() {
 
       if (error) throw error;
 
-      // Transform data for display
-      const transformedData = data?.map((item: any) => ({
+      const transformedData = data?.map((item) => ({
         user_id: item.user_id,
         username: item.users.username,
         category_name: item.categories.category_name,
@@ -121,7 +105,7 @@ export default function ClientSearch() {
     }
   };
 
-  const handleCategoryPress = (categoryId: string) => {
+  const handleCategoryPress = (categoryId) => {
     searchProfessionals(categoryId);
   };
 

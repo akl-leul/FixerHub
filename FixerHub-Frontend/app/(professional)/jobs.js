@@ -13,15 +13,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 import { Plus, Edit, Trash2, DollarSign, Settings } from 'lucide-react-native';
 
-interface Job {
-  job_id: string;
-  category_id: string;
-  category_name: string;
-  category_price: number;
-  is_active: boolean;
-  subcategories: SubCategory[];
-}
-
+ 
 interface SubCategory {
   sub_category_id: string;
   sub_category_name: string;
@@ -30,7 +22,8 @@ interface SubCategory {
 
 export default function ProfessionalJobs() {
   const { userProfile } = useAuth();
-  const [jobs, setJobs] = useState<Job[]>([]);
+  const [jobs, setJobs] = useState([]);
+
   const [loading, setLoading] = useState(false);
   const [showAddJob, setShowAddJob] = useState(false);
 
@@ -104,9 +97,9 @@ export default function ProfessionalJobs() {
         'Success', 
         `Job ${!currentStatus ? 'activated' : 'deactivated'} successfully`
       );
-    } catch (error: any) {
-      Alert.alert('Error', error.message);
-    }
+    } catch (error) {
+  Alert.alert('Error', error.message);
+}
   };
 
   const deleteJob = async (jobId: string) => {
@@ -136,9 +129,9 @@ export default function ProfessionalJobs() {
 
               loadJobs();
               Alert.alert('Success', 'Job deleted successfully');
-            } catch (error: any) {
-              Alert.alert('Error', error.message);
-            }
+            } catch (error) {
+  Alert.alert('Error', error.message);
+}
           },
         },
       ]
